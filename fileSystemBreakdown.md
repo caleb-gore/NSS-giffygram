@@ -1,0 +1,36 @@
+# Giffygram file system breakdown
+- :file_folder: images
+  - :page_facing_up: block.svg (delete button)
+  - :page_facing_up: favorite-star-blank.svg (favorite:unchecked)
+  - :page_facing_up: favorite-star-yellow.svg (favorite:checked)
+  - :page_facing_up: fountain-pen.svg (write message)
+  - :page_facing_up: pb.png (icon / home button)
+- :file_folder: scripts
+  - :file_folder: auth
+    - :page_facing_up: Login.js
+      - import {users} from ../data/provider.js
+      - export {LoginForm}
+  - :file_folder: data
+    - :page_facing_up: provider.js
+  - :file_folder: feed
+    - :page_facing_up: MessageList.js
+    - :page_facing_up: Post.js
+    - :page_facing_up: PostEntry.js
+    - :page_facing_up: PostList.js
+  - :file_folder: message
+    - :page_facing_up: MessageForm.js
+    - :page_facing_up: PrivateMessages.js
+  - :file_folder: nav
+    - :page_facing_up: Footer.js
+    - :page_facing_up: NavBar.js
+  - :page_facing_up: GiffyGram.js
+  - :page_facing_up: main.js
+- :file_folder: styles
+  - :page_facing_up: feed.css
+  - :page_facing_up: footer.css
+  - :page_facing_up: main.css
+  - :page_facing_up: message.css
+  - :page_facing_up: navigation.css
+  - :page_facing_up: posts.css
+  - :page_facing_up: updates.css
+- :page_facing_up: index.html
