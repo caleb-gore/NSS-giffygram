@@ -1,9 +1,16 @@
-import { Login } from "./auth/Login.js"
+import { Login } from "./auth/Login.js";
+import { fetchUsers } from "./data/provider.js";
 
-const mainContainer = document.querySelector("#container")
+const mainContainer = document.querySelector("#container");
 
 const render = () => {
-    return mainContainer.innerHTML = Login()
-}
+  fetchUsers().then(() => {
+    return (mainContainer.innerHTML = Login());
+  });
+};
 
-render()
+render();
+
+mainContainer.addEventListener("stateChanged", (customEvent) => {
+  render();
+});
