@@ -1,10 +1,8 @@
 // query selector -> main element -> id 'container' //
-const mainContainer = document.querySelector("#container")
+const mainContainer = document.querySelector("#container");
 
 // application state //
-const applicationState = {
-
-}
+const applicationState = {};
 
 // API //
 const API = "http://localhost:8088";
@@ -32,16 +30,27 @@ export const saveUser = (userObj) => {
 
 // --- fetch user from API-> exported --- //
 export const fetchUsers = () => {
-    return fetch(`${API}/users`)
-    .then(response => response.json())
+  return fetch(`${API}/users`)
+    .then((response) => response.json())
     .then((users) => {
-        applicationState.users = users
-    })
-}
+      applicationState.users = users;
+    });
+};
 
 /* <===> <===> FUNCTIONS (GETTER) <===> <===> */
 
 // --- get user from application state -> exported --- //
 export const getUsers = () => {
-    return applicationState.users.map(user => ({...user}))
+    return applicationState.users.map((user) => ({ ...user }));
+};
+
+export const getCurrentUser = () => {
+    return {...applicationState.currentUser}
+}
+
+/* <===> <===> FUNCTIONS (SETTER) <===> <===> */
+
+// --- set current user in application state -> exported --- //
+export const setCurrentUser = (userObj) => {
+    applicationState.currentUser = userObj
 }
