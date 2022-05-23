@@ -1,4 +1,7 @@
+// query selector -> main element -> id 'container' //
+const mainContainer = document.querySelector("#container")
 
+// application state //
 const applicationState = {
 
 }
@@ -21,7 +24,7 @@ export const saveUser = (userObj) => {
   return fetch(`${API}/users`, fetchOptions)
     .then((response) => response.json())
     .then(() => {
-      document.dispatchEvent(new CustomEvent("stateChanged"));
+      mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
     });
 };
 

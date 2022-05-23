@@ -5,6 +5,42 @@
       "email": "caleb@gore.com",
       "password": "caleb",
       "id": 1
+    },
+    {
+      "name": "Damari Mcbride",
+      "email": "damari@mcbride.com",
+      "password": "damari",
+      "id": 2
+    },
+    {
+      "name": "Steve Brownlee",
+      "email": "steve@brownlee.com",
+      "password": "coach",
+      "id": 3
+    },
+    {
+      "name": "Dan Purdon",
+      "email": "dan@purdon.com",
+      "password": "dan",
+      "id": 4
+    },
+    {
+      "name": "Piper Leigh",
+      "email": "piper@leigh.com",
+      "password": "piper",
+      "id": 5
+    },
+    {
+      "name": "Alex Yen",
+      "email": "alex@yen.com",
+      "password": "alex",
+      "id": 6
+    },
+    {
+      "name": "Alex Long",
+      "email": "alex@long.com",
+      "password": "alex",
+      "id": 7
     }
   ]
 }

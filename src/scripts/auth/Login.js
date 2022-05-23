@@ -1,5 +1,7 @@
 import { getUsers, saveUser } from "../data/provider.js";
 
+const mainContainer = document.querySelector("#container")
+
 export const Login = () => {
   return `<h1>GiffyGram</h1>
     <div>
@@ -60,6 +62,7 @@ document.addEventListener("click", (clickEvent) => {
         email: userEmail,
         password: userPassword,
       };
+      document.querySelector('#signup-incomplete-text').innerHTML = "<p style='color: green'>User Account Created Successfully! Please Login Above</p>"
       saveUser(sendUserToAPI);
     }
   }
@@ -77,9 +80,14 @@ document.addEventListener("click", (clickEvent) => {
       (user) => user.email === userEmail && user.password === userPassword
     );
     if (currentUser) {
-      window.alert("Login Successful");
+      loginUser();
     } else {
         document.querySelector('#login-incomplete-text').innerHTML = "<p style='color: red'>incorrect email or password</p>"
     }
   }
 });
+
+const loginUser = () => {
+    localStorage.setItem("loginStatus", "authenticated")
+    mainContainer.dispatchEvent(new CustomEvent("authenticated"))
+}
