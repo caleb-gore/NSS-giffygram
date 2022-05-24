@@ -1,11 +1,10 @@
+/* <===> <===> IMPORTS <===> <===> */
 import { getUsers, setCurrentUser } from "./data/provider.js";
 import { PostEntry } from "./feed/PostEntry.js";
 import { PostList } from "./feed/PostList.js";
 import { MessageForm } from "./message/MessageForm.js";
 import { Footer } from "./nav/Footer.js";
 import { NavBar } from "./nav/NavBar.js";
-
-
 
 // function -> build HTML for GiffyGram from other components -> exported to main.js //
 
@@ -33,5 +32,3 @@ ${PostList()}
 </div>
 ${Footer()}`;
 };
-
-
