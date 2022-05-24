@@ -1,5 +1,7 @@
+/* <===> <===> IMPORTS <===> <===> */
 import { setCurrentUser, setNewMessageClicked } from "../data/provider.js";
 
+/* <===> <===> FUNCTIONS <===> <===> */
 export const NavBar = () => {
   return `
   <div class="border fixed-top d-flex flex-row justify-content-center">
@@ -15,6 +17,8 @@ export const NavBar = () => {
 // query selector -> main element -> id 'container' //
 const mainContainer = document.querySelector("#container");
 
+/* <===> <===> EVENT LISTENERS <===> <===> */
+
 // event listener -> click -> 'Logout' -> remove authentication and dispatch logout event //
 mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "logout") {
@@ -25,6 +29,7 @@ mainContainer.addEventListener("click", (clickEvent) => {
   }
 });
 
+// event listener -> click -> 'New Message' -> set 'clicked' status to true //
 document.addEventListener('click', clickEvent => {
     if (clickEvent.target.id === 'newMessage') {
         setNewMessageClicked(true)

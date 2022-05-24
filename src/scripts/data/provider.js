@@ -44,17 +44,22 @@ export const getUsers = () => {
   return applicationState.users.map((user) => ({ ...user }));
 };
 
+// get currentUser from application state -> exported //
 export const getCurrentUser = () => {
   return { ...applicationState.currentUser };
 };
 
+// get 'clicked' status of post entry section from application state -> exported //
 export const getPostEntryClicked = () => {
   return applicationState.postEntryClicked;
 };
-
+// get 'clicked' status of new message button from application state -> exported //
 export const getNewMessageClicked = () => {
   return applicationState.newMessageClicked;
 };
+/* END */
+
+
 /* <===> <===> FUNCTIONS (SETTER) <===> <===> */
 
 // --- set current user in application state -> exported --- //
@@ -62,11 +67,13 @@ export const setCurrentUser = (userObj) => {
   applicationState.currentUser = userObj;
 };
 
+// set 'clicked' status of post entry section in application state -> exported //
 export const setPostEntryClicked = (boolean) => {
   applicationState.postEntryClicked = boolean;
   mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
 };
 
+// set 'clicked' status of new message button from application state -> exported //
 export const setNewMessageClicked = (boolean) => {
   applicationState.newMessageClicked = boolean;
   mainContainer.dispatchEvent(new CustomEvent("stateChanged"));

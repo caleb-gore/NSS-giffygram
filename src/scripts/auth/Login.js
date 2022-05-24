@@ -47,7 +47,7 @@ export const Login = () => {
     </div>`;
 };
 
-// function -> set login status to 'authenticated' -> dispatch 'authenticated' event //
+// function -> set 'loginStatus' and 'user' in local storage -> dispatch 'login' event //
 const loginUser = (userObj) => {
   localStorage.setItem("loginStatus", "authenticated");
   localStorage.setItem("user", userObj.email);
@@ -121,8 +121,8 @@ document.addEventListener("click", (clickEvent) => {
 
     // if current user is in the database... //
     if (currentUser) {
-      setCurrentUser(currentUser);
-      loginUser(currentUser);
+      setCurrentUser(currentUser);  // updates applicationState
+      loginUser(currentUser);  // updates localStorage
 
       // if current user is NOT in the database... //
     } else {
