@@ -78,5 +78,15 @@
       "password": "jake",
       "id": 13
     }
+  ],
+  "posts": [
+    {
+      "title": "This is a test",
+      "imageURL": "https://media.giphy.com/media/gw3IWyGkC0rsazTi/giphy.gif",
+      "description": "This is a test. This is only a test.",
+      "userId": 13,
+      "timestamp": 1653422625757,
+      "id": 1
+    }
   ]
 }
