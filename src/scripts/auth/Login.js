@@ -51,7 +51,7 @@ export const Login = () => {
 const loginUser = (userObj) => {
   localStorage.setItem("loginStatus", "authenticated");
   localStorage.setItem("user", userObj.email);
-  mainContainer.dispatchEvent(new CustomEvent("authenticated"));
+  mainContainer.dispatchEvent(new CustomEvent("login"));
 };
 /* END */
 

@@ -41,16 +41,25 @@ export const fetchUsers = () => {
 
 // --- get user from application state -> exported --- //
 export const getUsers = () => {
-    return applicationState.users.map((user) => ({ ...user }));
+  return applicationState.users.map((user) => ({ ...user }));
 };
 
 export const getCurrentUser = () => {
-    return {...applicationState.currentUser}
-}
+  return { ...applicationState.currentUser };
+};
+
+export const getPostEntryClicked = () => {
+  return applicationState.postEntryClicked;
+};
 
 /* <===> <===> FUNCTIONS (SETTER) <===> <===> */
 
 // --- set current user in application state -> exported --- //
 export const setCurrentUser = (userObj) => {
-    applicationState.currentUser = userObj
-}
+  applicationState.currentUser = userObj;
+};
+
+export const setPostEntryClicked = (boolean) => {
+  applicationState.postEntryClicked = boolean;
+  mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+};

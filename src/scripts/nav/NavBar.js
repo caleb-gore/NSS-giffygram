@@ -20,6 +20,7 @@ mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "logout") {
     setCurrentUser({});
     localStorage.removeItem("loginStatus");
+    localStorage.removeItem("user")
     mainContainer.dispatchEvent(new CustomEvent("logout"));
   }
 });
