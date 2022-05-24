@@ -20,7 +20,7 @@ export const PostEntry = () => {
 
 // function -> build minimized HTML for post entry section //
 const miniPostEntry = () => {
-  return "<div id='postEntry' class='border'><p>Have a gif to post?</p></div>";
+  return "<div id='postEntry' class='border'><p style='pointer-events: none'>Have a gif to post?</p></div>";
 };
 
 // function -> build post entry form //
@@ -29,8 +29,8 @@ const postEntryForm = () => {
     <form>
     <div class="form-group">
         <input type="text" class="form-control mt-3" placeholder="Title">
-        <input type="text" class="form-control mt-3" placeholder="URL or gif"
-        <textarea placeholder="Story behind your gif..."></textarea>
+        <input type="text" class="form-control mt-3" placeholder="URL or gif">
+        <textarea class="form-control mt-3" id="postText" placeholder="Story behind your gif..."></textarea>
         <button class="btn btn-primary mt-3 mb-3">Save</button>
         <button class="btn btn-primary mt-3 mb-3" id="cancel">Cancel</button>
         </div>
