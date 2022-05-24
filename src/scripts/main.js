@@ -1,6 +1,6 @@
 /* <===> <===> IMPORTS <===> <===> */
 import { Login } from "./auth/Login.js";
-import { fetchUsers } from "./data/provider.js";
+import { fetchPosts, fetchUsers } from "./data/provider.js";
 import { GiffyGram } from "./GiffyGram.js";
 
 // query selector -> main element -> by id 'container' //
@@ -18,6 +18,8 @@ const render = (HTML) => {
 const authenticationCheck = () => {
   const authenticated = localStorage.getItem("loginStatus");
   fetchUsers().then(() => {
+    fetchPosts()
+  }).then(() => {
     if (authenticated === "authenticated") {
       render(GiffyGram());
     } else {
