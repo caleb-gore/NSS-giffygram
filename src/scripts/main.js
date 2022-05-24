@@ -34,18 +34,24 @@ authenticationCheck(); // authentication check //
 // event listener -> state changed -> render Login() HTML //
 mainContainer.addEventListener("stateChanged", (customEvent) => {
   console.log("State Changed, rendering...");
-  render(Login());
+  authenticationCheck();
 });
 
 // event listener -> user authenticated -> render GiffyGram() HTML //
 mainContainer.addEventListener("authenticated", (customEvent) => {
   console.log("authenticated");
-  render(GiffyGram());
+  authenticationCheck();
+});
+
+// event listener -> login -> render Login() HTML //
+mainContainer.addEventListener("login", (customEvent) => {
+  console.log("logged in");
+  authenticationCheck();
 });
 
 // event listener -> logout -> render Login() HTML //
 mainContainer.addEventListener("logout", (customEvent) => {
   console.log("logged out");
-  render(Login());
+  authenticationCheck();
 });
 /* END */
