@@ -27,20 +27,20 @@ export const saveUser = (userObj) => {
 };
 
 export const savePost = (postObj) => {
-    const fetchOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postObj)
-    }
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postObj),
+  };
 
-    return fetch(`${API}/posts`, fetchOptions)
+  return fetch(`${API}/posts`, fetchOptions)
     .then((response) => response.json())
     .then(() => {
-        mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
-    })
-}
+      mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+    });
+};
 
 /* <===> <===> FUNCTIONS (FETCH) <===> <===> */
 
@@ -53,6 +53,15 @@ export const fetchUsers = () => {
     });
 };
 
+// fetch posts from API -> exported //
+export const fetchPosts = () => {
+  return fetch(`${API}/posts`)
+    .then((response) => response.json())
+    .then((posts) => {
+      applicationState.posts = posts;
+    });
+};
+
 /* <===> <===> FUNCTIONS (GETTER) <===> <===> */
 
 // --- get user from application state -> exported --- //
@@ -60,6 +69,10 @@ export const getUsers = () => {
   return applicationState.users.map((user) => ({ ...user }));
 };
 
+// get posts from application state -> exported //
+export const getPosts = () => {
+  return applicationState.posts.map((post) => ({ ...post }));
+};
 // get currentUser from application state -> exported //
 export const getCurrentUser = () => {
   return { ...applicationState.currentUser };
@@ -74,7 +87,6 @@ export const getNewMessageClicked = () => {
   return applicationState.newMessageClicked;
 };
 /* END */
-
 
 /* <===> <===> FUNCTIONS (SETTER) <===> <===> */
 
