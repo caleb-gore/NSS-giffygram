@@ -52,6 +52,9 @@ export const getPostEntryClicked = () => {
   return applicationState.postEntryClicked;
 };
 
+export const getNewMessageClicked = () => {
+  return applicationState.newMessageClicked;
+};
 /* <===> <===> FUNCTIONS (SETTER) <===> <===> */
 
 // --- set current user in application state -> exported --- //
@@ -61,5 +64,10 @@ export const setCurrentUser = (userObj) => {
 
 export const setPostEntryClicked = (boolean) => {
   applicationState.postEntryClicked = boolean;
+  mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+};
+
+export const setNewMessageClicked = (boolean) => {
+  applicationState.newMessageClicked = boolean;
   mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
 };
