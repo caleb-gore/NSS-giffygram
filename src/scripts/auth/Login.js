@@ -8,49 +8,49 @@ const mainContainer = document.querySelector("#container");
 
 // function -> build HTML for Login & Sign Up page -> exported to main.js //
 export const Login = () => {
-  return `<h1>GiffyGram</h1>
-    <div>
+  return `<h1 class="text-center">GiffyGram</h1>
+    <div class="container border">
         <h3>Login</h3>
-        <div>
-            <div>
+        <form>
+            <div class="form-group mb-3">
                 <label for="login-email">Email:</label>
-                <input type="email" name="login-email" id="login-email" placeholder="jake@statefarm.com">
-                </div>
-                <div>
-                <label for="login-password">Password:</label>
-                <input type="password" name="login-password" id="login-password" placeholder="password">
-                </div>
-                <div id="login-incomplete-text"></div>
-                </div>
-                <button id="login-btn">Login</button>
-                </div>
-                <p>or</p>
-                <div class="border">
-                <h3>Sign Up</h3>
-                <div>
-                <div>
-                <label for="signup-name">Name</label>
-                <input type="text" name="signup-name" id="signup-name" placeholder="Jake from State Farm">
+                <input class="form-control" type="email" name="login-email" id="login-email" placeholder="jake@statefarm.com">
+            </div>
                 
-                </div>
-                <div>
+            <div class="form-group mb-3">
+                <label for="login-password">Password:</label>
+                <input class="form-control" type="password" name="login-password" id="login-password" placeholder="password">
+            </div>
+            <div id="login-incomplete-text"></div>
+            <button class="btn btn-primary mb-3" id="login-btn">Login</button>
+        </form>
+    </div>
+    <h5 class="text-center">- or -</h5>
+    <div class="container border">
+        <h3>Sign Up</h3>
+        <form>
+            <div class="form-group mb-3">
+                <label for="signup-name">Name</label>
+                <input class="form-control" type="text" name="signup-name" id="signup-name" placeholder="Jake from State Farm">    
+            </div>
+            <div class="form-group mb-3">
                 <label for="signup-email">Email:</label>
-                <input type="email" name="signup-email" id="signup-email" placeholder="jake@statefarm.com">
-                </div>
-                <div>
+                <input class="form-control" type="email" name="signup-email" id="signup-email" placeholder="jake@statefarm.com">
+            </div>
+            <div class="form-group mb-3">
                 <label for="signup-password">Password:</label>
-                <input type="password" name="signup-password" id="signup-password" placeholder="password">
-                </div>
-                <div id="signup-incomplete-text"></div>
-                </div>
-                <button id="signUp">Create Account</button>
+                <input class="form-control" type="password" name="signup-password" id="signup-password" placeholder="password">
+            </div>
+            <div id="signup-incomplete-text"></div>
+            <button class="btn btn-primary mb-3" id="signUp">Create Account</button>
+        </form>
     </div>`;
 };
 
 // function -> set login status to 'authenticated' -> dispatch 'authenticated' event //
 const loginUser = (userObj) => {
   localStorage.setItem("loginStatus", "authenticated");
-  localStorage.setItem("user", userObj.email)
+  localStorage.setItem("user", userObj.email);
   mainContainer.dispatchEvent(new CustomEvent("authenticated"));
 };
 /* END */
@@ -60,6 +60,9 @@ const loginUser = (userObj) => {
 // event listener -> click -> 'Create Account' -> check if user exists ->save user to API //
 document.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "signUp") {
+    // prevent form submission //
+    clickEvent.preventDefault();
+
     // get data from application state //
     const users = getUsers();
 
@@ -101,6 +104,9 @@ document.addEventListener("click", (clickEvent) => {
 // event listener -> click -> 'Login' -> check user input against API data //
 document.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "login-btn") {
+    // prevent form submission //
+    clickEvent.preventDefault();
+
     // get data from application state //
     const users = getUsers();
 
@@ -125,3 +131,4 @@ document.addEventListener("click", (clickEvent) => {
     }
   }
 });
+/* END */

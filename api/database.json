@@ -59,6 +59,24 @@
       "email": "name@name.com",
       "password": "name",
       "id": 10
+    },
+    {
+      "name": "Myeashea Alexander",
+      "email": "myeashea@alexander.com",
+      "password": "myeashea",
+      "id": 11
+    },
+    {
+      "name": "Natasha Vega",
+      "email": "natasha@vega.com",
+      "password": "natasha",
+      "id": 12
+    },
+    {
+      "name": "Jake from State Farm",
+      "email": "jake@statefarm.com",
+      "password": "jake",
+      "id": 13
     }
   ]
 }
