@@ -47,14 +47,30 @@ export const archivePost = (postObj) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-    }, 
+    },
     body: JSON.stringify(postObj),
-  }
+  };
 
-  return fetch(`${API}/deletedPosts`, fetchOptions)
-  .then((response) => response.json())
-}
+  return fetch(`${API}/deletedPosts`, fetchOptions).then((response) =>
+    response.json()
+  );
+};
 
+export const sendMessageToAPI = (messageObj) => {
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(messageObj),
+  };
+
+  return fetch(`${API}/messages`, fetchOptions)
+    .then((response) => response.json())
+    .then(() => {
+      mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+    });
+};
 /* <===> <===> FUNCTIONS (FETCH) <===> <===> */
 
 // --- fetch user from API-> exported --- //
