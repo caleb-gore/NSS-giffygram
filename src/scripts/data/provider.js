@@ -2,9 +2,7 @@
 const mainContainer = document.querySelector("#container");
 
 // application state //
-const applicationState = {
-   
-};
+const applicationState = {};
 
 // API //
 const API = "http://localhost:8088";
@@ -43,6 +41,19 @@ export const savePost = (postObj) => {
       mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
     });
 };
+
+export const archivePost = (postObj) => {
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    }, 
+    body: JSON.stringify(postObj),
+  }
+
+  return fetch(`${API}/deletedPosts`, fetchOptions)
+  .then((response) => response.json())
+}
 
 /* <===> <===> FUNCTIONS (FETCH) <===> <===> */
 
@@ -107,4 +118,14 @@ export const setPostEntryClicked = (boolean) => {
 export const setNewMessageClicked = (boolean) => {
   applicationState.newMessageClicked = boolean;
   mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+};
+/* END */
+
+/* <===> <===> FUNCTIONS (DELETE) <===> <===> */
+
+// function -> delete post from API //
+export const deletePost = (id) => {
+  return fetch(`${API}/posts/${id}`, { method: "DELETE" }).then(() => {
+    mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+  });
 };
