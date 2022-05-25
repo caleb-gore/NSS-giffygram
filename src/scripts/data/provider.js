@@ -2,7 +2,9 @@
 const mainContainer = document.querySelector("#container");
 
 // application state //
-const applicationState = {};
+const applicationState = {
+   
+};
 
 // API //
 const API = "http://localhost:8088";

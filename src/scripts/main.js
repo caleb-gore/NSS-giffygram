@@ -17,9 +17,7 @@ const render = (HTML) => {
 // function -> call fetch functions -> check authentication status -> call render function with appropriate argument //
 const authenticationCheck = () => {
   const authenticated = localStorage.getItem("loginStatus");
-  fetchUsers().then(() => {
-    fetchPosts()
-  }).then(() => {
+  fetchPosts().then(() => fetchUsers()).then(() => {
     if (authenticated === "authenticated") {
       render(GiffyGram());
     } else {

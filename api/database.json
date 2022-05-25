@@ -87,6 +87,22 @@
       "userId": 13,
       "timestamp": 1653422625757,
       "id": 1
+    },
+    {
+      "title": "She's gonna have beef with me...",
+      "imageURL": "https://media.giphy.com/media/PNkaByD2CHTaM/giphy.gif",
+      "description": "...forever",
+      "userId": 2,
+      "timestamp": 1653491296576,
+      "id": 2
+    },
+    {
+      "title": "He do!",
+      "imageURL": "https://tenor.com/bsb25.gif",
+      "description": "dont he?",
+      "userId": 11,
+      "timestamp": 1653492302603,
+      "id": 3
     }
   ]
 }
