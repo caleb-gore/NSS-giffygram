@@ -1,7 +1,7 @@
 // function -> build HTML for footer -> exported //
 export const Footer = () => {
     return `
-    <footer class="d-flex fixed-bottom border justify-content-around ">
+    <footer class="bg-white d-flex fixed-bottom border justify-content-around ">
     <div >
     <label  >posts since</label>
     <select >

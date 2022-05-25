@@ -4,7 +4,7 @@ import { setCurrentUser, setNewMessageClicked } from "../data/provider.js";
 /* <===> <===> FUNCTIONS <===> <===> */
 export const NavBar = () => {
   return `
-  <div class="border fixed-top d-flex flex-row justify-content-center">
+  <div class="bg-white border fixed-top d-flex flex-row justify-content-center">
     <button class="btn"><i id="home" class="fa-solid fa-jar fa-2xl"></i></button>
     <h1 class="col-5">giffygram</h1>
     <button class="btn" id="newMessage" ><i style="pointer-events: none" class="fa-solid fa-pen-to-square fa-2xl"></i></button>
