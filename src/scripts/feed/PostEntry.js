@@ -20,12 +20,13 @@ export const PostEntry = () => {
 
 // function -> build minimized HTML for post entry section //
 const miniPostEntry = () => {
-  return "<div id='postEntry' class='border'><p style='pointer-events: none'>Have a gif to post?</p></div>";
+  return `<button id='postEntry' class='btn border mb-3'><i style="pointer-events: none" class="m-auto fa-3x fa-solid fa-circle-plus"></i></button>`;
 };
 
 // function -> build post entry form //
 const postEntryForm = () => {
-  return `<div class="container border">
+  return `<div class="container border mb-3">
+    <h3 class="text-center" >new post</h3>
     <form>
     <div class="form-group">
         <input type="text" class="form-control mt-3" id="postTitleInput" placeholder="Title">

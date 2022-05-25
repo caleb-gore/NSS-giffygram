@@ -106,5 +106,14 @@
       "timestamp": 1653495720644,
       "id": 3
     }
+  ],
+  "messages": [
+    {
+      "userId": 1,
+      "recipientId": 2,
+      "text": "ur a loser",
+      "read": false,
+      "id": 1
+    }
   ]
 }

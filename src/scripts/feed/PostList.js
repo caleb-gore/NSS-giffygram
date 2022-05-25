@@ -6,7 +6,6 @@ export const PostList = () => {
     const posts = getPosts()
     posts.sort((a,b) => b.timestamp - a.timestamp)
     const postsArray = posts.map(post => {
-        console.log(Post(post))
         return Post(post)
     });
     const HTML = postsArray.join("")
