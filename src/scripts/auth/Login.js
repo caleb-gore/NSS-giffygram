@@ -26,26 +26,38 @@ export const Login = () => {
         </form>
     </div>
     <h5 class="text-center">- or -</h5>
-    <div class="container border">
-        <h3>Sign Up</h3>
-        <form>
-            <div class="form-group mb-3">
-                <label for="signup-name">Name</label>
-                <input class="form-control" type="text" name="signup-name" id="signup-name" placeholder="Jake from State Farm">    
-            </div>
-            <div class="form-group mb-3">
-                <label for="signup-email">Email:</label>
-                <input class="form-control" type="email" name="signup-email" id="signup-email" placeholder="jake@statefarm.com">
-            </div>
-            <div class="form-group mb-3">
-                <label for="signup-password">Password:</label>
-                <input class="form-control" type="password" name="signup-password" id="signup-password" placeholder="password">
-            </div>
-            <div id="signup-incomplete-text"></div>
-            <button class="btn btn-primary mb-3" id="signUp">Create Account</button>
-        </form>
-    </div>`;
+    <div id="signUpHTML" class="text-center">
+    ${signUpPrompt()}
+    </div>
+    `
+    
 };
+
+const signUpPrompt = () => {
+  return `<button id="signUpButton" class=" btn btn-primary mb-3" >Click Here To Sign Up</button>`
+}
+
+const signUp = () => {
+  return `<div class="container border">
+  <h3>Sign Up</h3>
+  <form>
+      <div class="form-group mb-3">
+          <label for="signup-name">Name</label>
+          <input class="form-control" type="text" name="signup-name" id="signup-name" placeholder="Jake from State Farm">    
+      </div>
+      <div class="form-group mb-3">
+          <label for="signup-email">Email:</label>
+          <input class="form-control" type="email" name="signup-email" id="signup-email" placeholder="jake@statefarm.com">
+      </div>
+      <div class="form-group mb-3">
+          <label for="signup-password">Password:</label>
+          <input class="form-control" type="password" name="signup-password" id="signup-password" placeholder="password">
+      </div>
+      <div id="signup-incomplete-text"></div>
+      <button class="btn btn-primary mb-3" id="signUp">Create Account</button>
+  </form>
+</div>`;
+}
 
 // function -> set 'loginStatus' and 'user' in local storage -> dispatch 'login' event //
 const loginUser = (userObj) => {
@@ -56,6 +68,11 @@ const loginUser = (userObj) => {
 /* END */
 
 /* <===> <===> EVENT LISTENERS <===> <===> */
+
+mainContainer.addEventListener('click', clickEvent => {
+  if (clickEvent.target.id === "signUpButton")
+  document.querySelector('#signUpHTML').innerHTML = `${signUp()}`
+})
 
 // event listener -> click -> 'Create Account' -> check if user exists ->save user to API //
 document.addEventListener("click", (clickEvent) => {

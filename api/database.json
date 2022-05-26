@@ -77,6 +77,12 @@
       "email": "jake@statefarm.com",
       "password": "jake",
       "id": 13
+    },
+    {
+      "name": "New Phone Who Dis",
+      "email": "newphone@whodis.com",
+      "password": "phone",
+      "id": 14
     }
   ],
   "posts": [
