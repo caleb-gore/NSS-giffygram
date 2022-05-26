@@ -1,17 +1,52 @@
 /* <===> <===> IMPORTS <===> <===> */
-import { setCurrentUser, setNewMessageClicked } from "../data/provider.js";
+import {
+  setCurrentUser,
+  setNewMessageClicked,
+  setInboxOpen,
+  getCurrentUser,
+  getMessages,
+} from "../data/provider.js";
 
 /* <===> <===> FUNCTIONS <===> <===> */
 export const NavBar = () => {
-  return `
-  <div class="bg-white border fixed-top d-flex flex-row justify-content-center">
-    <button class="btn"><i id="home" class="fa-solid fa-jar fa-2xl"></i></button>
-    <h1 class="col-5">giffygram</h1>
-    <button class="btn" id="newMessage" ><i style="pointer-events: none" class="fa-solid fa-pen-to-square fa-2xl"></i></button>
-    <button class="btn"><i class="fa-solid fa-envelope fa-2xl"></i></button>
-    <button class="btn" id="logout"><i style="pointer-events: none" class="fa-solid fa-right-from-bracket fa-2xl"></i></button>
-  </div>
-  `;
+  const currentUser = getCurrentUser();
+  const messages = getMessages();
+  const unreadMessages = messages.filter(
+    (message) =>
+      currentUser.id === message.recipientId && message.read === false
+  );
+
+  if (unreadMessages.length !== 0) {
+    return `
+    <div class=" bg-white border fixed-top d-flex flex-row justify-content-center align-items-center">
+    <button id="homeBtn" class="btn">
+    <i style="pointer-events: none" class="fa-3x fa-solid fa-jar"></i>
+    </button>  
+      <h1 class="col-5">giffygram</h1>
+      <button id="newMessage" class="btn">
+      <i style="pointer-events: none" class="fa-3x fa-solid fa-pen-to-square"></i>
+      </button>
+      <button id="inbox" class="btn">
+      <span style="pointer-events: none" class="fa-3x fa-layers fa-fw">
+        <i  class=" fa-solid fa-envelope"></i>
+        <span class=" fa-layers-counter " style="background:Tomato">${unreadMessages.length}</span>
+      </span>
+      </button>
+      <button id="logout" class="btn">
+      <i style="pointer-events: none" class="fa-3x fa-solid fa-right-from-bracket"></i>
+    </div>
+    `;
+  } else {
+    return `
+    <div class="fa-2x bg-white border fixed-top d-flex flex-row justify-content-center align-items-center">
+      <i id="homeBtn" style="cursor: pointer"class="m-3 fa-solid fa-jar"></i>
+      <h1 class="col-5">giffygram</h1>
+      <i id="newMessage" style="cursor: pointer" class="m-3 fa-solid fa-pen-to-square"></i>
+      <i id="inbox" style="cursor: pointer" class="m-3 fa-solid fa-envelope "></i>
+      <i id="logout" style="cursor: pointer" class="m-3 fa-solid fa-right-from-bracket"></i>
+    </div>
+    `;
+  }
 };
 
 // query selector -> main element -> id 'container' //
@@ -24,15 +59,28 @@ mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "logout") {
     setCurrentUser({});
     localStorage.removeItem("loginStatus");
-    localStorage.removeItem("user")
+    localStorage.removeItem("user");
     mainContainer.dispatchEvent(new CustomEvent("logout"));
   }
 });
 
 // event listener -> click -> 'New Message' -> set 'clicked' status to true //
-document.addEventListener('click', clickEvent => {
-    if (clickEvent.target.id === 'newMessage') {
-        setNewMessageClicked(true)
-    }
-})
+document.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id === "newMessage") {
+    setNewMessageClicked(true);
+  }
+});
 
+// event listener -> click -> post entry section -> set 'clicked' status to true //
+document.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id === "inbox") {
+    setInboxOpen(true);
+  }
+});
+
+// event listener -> click -> post entry section -> set 'clicked' status to true //
+document.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id === "homeBtn") {
+    setInboxOpen(false);
+  }
+});
