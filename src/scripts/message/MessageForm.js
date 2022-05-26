@@ -29,7 +29,7 @@ const newMessageForm = () => {
     <form>
     <div class="form-group mt-3">
     <label>Recipient:</label>
-    <select id="messageRecipient" class="form-control">
+    <select id="RecipientOfMessage" class="form-control">
     <option value="0">choose a recipient...</option>
     ${recipients()}
     </select>
@@ -37,7 +37,7 @@ const newMessageForm = () => {
     
     <div class="form-group">
     <label class="mt-3">Message:</label>
-    <input type="text" class="form-control" id="messageText" placeholder="Message to User">
+    <input type="text" class="form-control" id="TextOfMessage" placeholder="Message to User">
     </div>
     
     <button class="btn btn-primary mt-3 mb-3" id="sendButton">Send</button>
@@ -72,8 +72,8 @@ document.addEventListener("click", (clickEvent) => {
 document.addEventListener('click', clickEvent => {
     if (clickEvent.target.id === 'sendButton') {
         const currentUser = getCurrentUser() // object
-        const messageRecipient = document.querySelector("#messageRecipient").value // recipient id (must parse int)
-        const newMessageText = document.querySelector('#messageText').value // string
+        const messageRecipient = document.querySelector("#RecipientOfMessage").value // recipient id (must parse int)
+        const newMessageText = document.querySelector('#TextOfMessage').value // string
 
         const newMessage = {
             userId: currentUser.id,

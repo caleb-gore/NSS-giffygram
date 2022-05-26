@@ -164,7 +164,9 @@ export const setNewMessageClicked = (boolean) => {
 // function -> set 'clicked' status of inbox button in application state -> exported //
 export const setInboxOpen = (boolean) => {
   applicationState.inboxOpen = boolean;
-  mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+  if (boolean === true) {
+    mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+  }
 };
 
 /* END */

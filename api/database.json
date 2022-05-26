@@ -112,8 +112,29 @@
       "userId": 1,
       "recipientId": 2,
       "text": "ur a loser",
-      "read": false,
+      "read": true,
       "id": 1
+    },
+    {
+      "userId": 2,
+      "recipientId": 1,
+      "text": "You're a loser, Harry",
+      "read": false,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "recipientId": 2,
+      "text": "You're Still a Loser",
+      "read": true,
+      "id": 3
+    },
+    {
+      "userId": 11,
+      "recipientId": 2,
+      "text": "See you at home! Bring Dinner!",
+      "read": true,
+      "id": 4
     }
   ]
 }

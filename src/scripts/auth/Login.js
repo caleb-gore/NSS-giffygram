@@ -1,5 +1,5 @@
 /* <===> <===> IMPORTS <===> <===> */
-import { getUsers, saveUser, setCurrentUser } from "../data/provider.js";
+import { getUsers, saveUser, setCurrentUser, setInboxOpen } from "../data/provider.js";
 
 // query selector -> main element -> id 'container' //
 const mainContainer = document.querySelector("#container");
@@ -122,6 +122,7 @@ document.addEventListener("click", (clickEvent) => {
     // if current user is in the database... //
     if (currentUser) {
       setCurrentUser(currentUser);  // updates applicationState
+      setInboxOpen(false)
       loginUser(currentUser);  // updates localStorage
 
       // if current user is NOT in the database... //

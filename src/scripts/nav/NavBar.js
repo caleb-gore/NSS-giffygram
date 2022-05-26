@@ -38,12 +38,22 @@ export const NavBar = () => {
     `;
   } else {
     return `
-    <div class="fa-2x bg-white border fixed-top d-flex flex-row justify-content-center align-items-center">
-      <i id="homeBtn" style="cursor: pointer"class="m-3 fa-solid fa-jar"></i>
+    <div class=" bg-white border fixed-top d-flex flex-row justify-content-center align-items-center">
+    <button id="homeBtn" class="btn">
+    <i style="pointer-events: none" class="fa-3x fa-solid fa-jar"></i>
+    </button>  
       <h1 class="col-5">giffygram</h1>
-      <i id="newMessage" style="cursor: pointer" class="m-3 fa-solid fa-pen-to-square"></i>
-      <i id="inbox" style="cursor: pointer" class="m-3 fa-solid fa-envelope "></i>
-      <i id="logout" style="cursor: pointer" class="m-3 fa-solid fa-right-from-bracket"></i>
+      <button id="newMessage" class="btn">
+      <i style="pointer-events: none" class="fa-3x fa-solid fa-pen-to-square"></i>
+      </button>
+      <button id="inbox" class="btn">
+      <span style="pointer-events: none" class="fa-3x fa-layers fa-fw">
+        <i  class=" fa-solid fa-envelope"></i>
+        
+      </span>
+      </button>
+      <button id="logout" class="btn">
+      <i style="pointer-events: none" class="fa-3x fa-solid fa-right-from-bracket"></i>
     </div>
     `;
   }

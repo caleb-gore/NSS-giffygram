@@ -10,25 +10,25 @@ import { NavBar } from "./nav/NavBar.js";
 // function -> build HTML for GiffyGram from other components -> exported to main.js //
 
 export const GiffyGram = () => {
-  let HTML = NavBar();
   const inbox = getInboxOpen();
-
+  const users = getUsers();
+  const currentUserEmail = localStorage.getItem("user");
+  const currentUser = users.find((user) => user.email === currentUserEmail);
+  setCurrentUser(currentUser);
+  
+  let HTML = NavBar();
   // check 'clicked' status of post entry section //
   if (inbox === true) {
-    HTML += MessageList();
+    HTML += MessageList(currentUser);
   } else {
-    HTML += feed();
+    HTML += feed(currentUser);
   }
   HTML += Footer()
   return HTML;
 };
 
-const feed = () => {
-  const users = getUsers();
-  const currentUserEmail = localStorage.getItem("user");
-  const currentUser = users.find((user) => user.email === currentUserEmail);
-  setCurrentUser(currentUser);
-  return `
+const feed = (currentUser) => {
+   return `
 <div class="container mt-5 pt-3 d-flex flex-column align-items-center">
 <p>
 Hello ${currentUser.name}, Welcome to GiffyGram
