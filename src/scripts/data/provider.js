@@ -9,6 +9,23 @@ const API = "http://localhost:8088";
 
 /* <===> <===> FUNCTIONS (POST) <===> <===> */
 
+// function -> save like object to API -> exported //
+export const saveLike = (likeObj) => {
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(likeObj)
+  }
+
+  return fetch(`${API}/likes`, fetchOptions)
+  .then((response) => response.json())
+  .then(() => {
+    mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+  })
+}
+
 // function -> save user to API-> exported //
 export const saveUser = (userObj) => {
   const fetchOptions = {
@@ -109,6 +126,17 @@ export const fetchMessages = () => {
       applicationState.messages = messages;
     });
 };
+
+// function -> fetch likes from API -> exported //
+export const fetchLikes = () => {
+  return fetch(`${API}/likes`)
+    .then((response) => response.json())
+    .then((likes) => {
+      applicationState.likes = likes;
+    });
+};
+
+
 /* END */
 
 /* <===> <===> FUNCTIONS (GETTER) <===> <===> */
@@ -116,6 +144,11 @@ export const fetchMessages = () => {
 // function -> get user from application state -> exported //
 export const getUsers = () => {
   return applicationState.users.map((user) => ({ ...user }));
+};
+
+// function -> get likes from application state -> exported //
+export const getLikes = () => {
+  return applicationState.likes.map((like) => ({ ...like }));
 };
 
 // function -> get posts from application state -> exported //
@@ -174,6 +207,13 @@ export const setMessageToClosed = (messageObj) => {
 // function -> delete post from API //
 export const deletePost = (id) => {
   return fetch(`${API}/posts/${id}`, { method: "DELETE" }).then(() => {
+    mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+  });
+};
+
+// function -> delete post from API //
+export const deleteLike = (id) => {
+  return fetch(`${API}/likes/${id}`, { method: "DELETE" }).then(() => {
     mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
   });
 };
