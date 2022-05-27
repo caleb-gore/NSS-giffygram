@@ -1,8 +1,6 @@
 /* <===> <===> IMPORTS <===> <===> */
 import {
     getCurrentUser,
-    getNewMessageClicked,
-    setNewMessageClicked,
     sendMessageToAPI,
     getUsers
 } from "../data/provider.js";
@@ -11,19 +9,6 @@ import {
 
 // function -> build HTML for Message Form -> exported //
 export const MessageForm = () => {
-    let HTML = "";
-    const newMessage = getNewMessageClicked();
-    
-    // check 'clicked' status of new message button //
-    if (newMessage === true) {
-        HTML = newMessageForm();
-    }
-    
-    return HTML;
-};
-
-// function -> build new message form HTML //
-const newMessageForm = () => {
     return `<div class="container border mb-3">
     <h3 class="text-center">new message</h3>
     <form>
@@ -65,12 +50,16 @@ const recipients = () => {
 
 // event listener -> 'click' -> 'cancel' button -> set 'clicked' status to false //
 document.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id === "cancelMessage") setNewMessageClicked(false);
+  if (clickEvent.target.id === "cancelMessage") {
+    clickEvent.preventDefault()  
+    document.querySelector('#messageForm').innerHTML = ""
+  };
 });
 
 // event listener -> 'click' -> 'send' button -> send message to API //
 document.addEventListener('click', clickEvent => {
     if (clickEvent.target.id === 'sendButton') {
+        clickEvent.preventDefault()
         const currentUser = getCurrentUser() // object
         const messageRecipient = document.querySelector("#RecipientOfMessage").value // recipient id (must parse int)
         const newMessageText = document.querySelector('#TextOfMessage').value // string
@@ -85,3 +74,4 @@ document.addEventListener('click', clickEvent => {
         sendMessageToAPI(newMessage)
     }
 })
+

@@ -1,5 +1,5 @@
 /* <===> <===> IMPORTS <===> <===> */
-import { getInboxOpen, getUsers, setCurrentUser } from "./data/provider.js";
+import { getCurrentUser, getInboxIsOpen, getUsers, setCurrentUser, setInboxToOpen } from "./data/provider.js";
 import { MessageList } from "./feed/MessageList.js";
 import { PostEntry } from "./feed/PostEntry.js";
 import { PostList } from "./feed/PostList.js";
@@ -10,18 +10,16 @@ import { NavBar } from "./nav/NavBar.js";
 // function -> build HTML for GiffyGram from other components -> exported to main.js //
 
 export const GiffyGram = () => {
-  const inbox = getInboxOpen();
   const users = getUsers();
   const currentUserEmail = localStorage.getItem("user");
   const currentUser = users.find((user) => user.email === currentUserEmail);
   setCurrentUser(currentUser);
   
   let HTML = NavBar();
-  // check 'clicked' status of post entry section //
-  if (inbox === true) {
-    HTML += MessageList(currentUser);
+  if (getInboxIsOpen()) {
+    HTML += `<div id="currentHTML">${MessageList(currentUsers)}</div>`;
   } else {
-    HTML += feed(currentUser);
+    HTML += `<div id="currentHTML">${feed(currentUser)}</div>`;
   }
   HTML += Footer()
   return HTML;
@@ -33,8 +31,7 @@ const feed = (currentUser) => {
 <p>
 Hello ${currentUser.name}, Welcome to GiffyGram
 </p>
-<div>
-${MessageForm()}
+<div id="messageForm">
 </div>
 <div>
 ${PostEntry()}
@@ -45,3 +42,26 @@ ${PostList()}
         
 </div>`;
 }
+
+document.addEventListener('click', clickEvent => {
+  if (clickEvent.target.id === 'inbox') {
+    const currentUser = getCurrentUser()
+    setInboxToOpen(true)
+    document.querySelector('#currentHTML').innerHTML = MessageList(currentUser)
+  }
+})
+
+document.addEventListener('click', clickEvent => {
+  if (clickEvent.target.id === 'homeBtn') {
+    const currentUser = getCurrentUser()
+    setInboxToOpen(false)
+    document.querySelector('#currentHTML').innerHTML = feed(currentUser)
+  }
+})
+
+document.addEventListener('click', clickEvent => {
+  if (clickEvent.target.id === 'newMessage') {
+    document.querySelector('#messageForm').innerHTML = MessageForm()
+  }
+})
+

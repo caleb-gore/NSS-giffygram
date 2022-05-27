@@ -21,9 +21,7 @@ export const saveUser = (userObj) => {
 
   return fetch(`${API}/users`, fetchOptions)
     .then((response) => response.json())
-    .then(() => {
-      mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
-    });
+    
 };
 
 // function -> save post to API (posts) -> exported //
@@ -73,6 +71,13 @@ export const sendMessageToAPI = (messageObj) => {
     .then(() => {
       mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
     });
+};
+
+// function -> set 'loginStatus' and 'user' in local storage -> dispatch 'login' event //
+export const loginUser = (userObj) => {
+  localStorage.setItem("loginStatus", "authenticated");
+  localStorage.setItem("user", userObj.email);
+  mainContainer.dispatchEvent(new CustomEvent("login"));
 };
 /* END */
 
@@ -127,18 +132,9 @@ export const getMessages = () => {
   return applicationState.messages.map((message) => ({ ...message }));
 };
 
-// function -> get 'clicked' status of post entry section from application state -> exported //
-export const getPostEntryClicked = () => {
-  return applicationState.postEntryClicked;
-};
-// function -> get 'clicked' status of new message button from application state -> exported //
-export const getNewMessageClicked = () => {
-  return applicationState.newMessageClicked;
-};
-
 // function -> get 'clicked' status of inbox button from application state -> exported //
-export const getInboxOpen = () => {
-  return applicationState.inboxOpen;
+export const getInboxIsOpen = () => {
+  return applicationState.inboxIsOpen;
 };
 /* END */
 
@@ -149,25 +145,12 @@ export const setCurrentUser = (userObj) => {
   applicationState.currentUser = userObj;
 };
 
-// set 'clicked' status of post entry button in application state -> exported //
-export const setPostEntryClicked = (boolean) => {
-  applicationState.postEntryClicked = boolean;
-  mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
-};
+export const setInboxToOpen = (boolean) => {
+  applicationState.inboxIsOpen = boolean
+}
 
-// set 'clicked' status of new message button in application state -> exported //
-export const setNewMessageClicked = (boolean) => {
-  applicationState.newMessageClicked = boolean;
-  mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
-};
 
-// function -> set 'clicked' status of inbox button in application state -> exported //
-export const setInboxOpen = (boolean) => {
-  applicationState.inboxOpen = boolean;
-  if (boolean === true) {
-    mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
-  }
-};
+
 
 /* END */
 

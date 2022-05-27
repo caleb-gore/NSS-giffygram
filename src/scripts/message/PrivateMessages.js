@@ -10,12 +10,14 @@ export const PrivateMessages = (messageObj) => {
         return `
         <button id="message--${messageObj.id}" class="container border">
             <i style="pointer-event: none" class="fa-solid fa-circle-dot fa-2xs m-1 mb-auto"></i>From ${sender.name}    
-        </button>`
+        </button>
+        <div id="openedMessage--${messageObj.id}"></div>`
     } else {
         return `
         <button id="message--${messageObj.id}" class="container border">
             From ${sender.name}    
-        </button>`
+        </button>
+        <div id="openedMessage--${messageObj.id}"></div>`
     }
 }
 
@@ -27,9 +29,14 @@ mainContainer.addEventListener('click', clickEvent => {
         const messages = getMessages()
         const clickedMessage = messages.find(message => message.id === parseInt(messageId)) 
 
-
-        window.alert(`${clickedMessage.text}`)
-        setMessageToRead(clickedMessage.id)
+        if (document.querySelector(`#openedMessage--${messageId}`).innerHTML === ``) {
+            document.querySelector(`#openedMessage--${messageId}`).innerHTML = `${clickedMessage.text}`
+        } else {
+            document.querySelector(`#openedMessage--${messageId}`).innerHTML = ``
+        }
+        if (clickedMessage.read === false) {
+            setMessageToRead(clickedMessage.id)
+        }
 
     }
 })

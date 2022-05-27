@@ -1,10 +1,12 @@
-/* <===> <===> IMPORTS <===> <===> */
-import { getUsers, saveUser, setCurrentUser, setInboxOpen } from "../data/provider.js";
+/* <===> <===> OUTSIDE CONNECTIONS <===> <===> */
+
+// function imports //
+import { getUsers, saveUser, setCurrentUser, loginUser } from "../data/provider.js";
 
 // query selector -> main element -> id 'container' //
 const mainContainer = document.querySelector("#container");
 
-/* <===> <===> FUNCTIONS <===> <===> */
+/* <===> <===> LOGIN PAGE <===> <===> */
 
 // function -> build HTML for Login & Sign Up page -> exported to main.js //
 export const Login = () => {
@@ -27,18 +29,21 @@ export const Login = () => {
     </div>
     <h5 class="text-center">- or -</h5>
     <div id="signUpHTML" class="text-center">
-    ${signUpPrompt()}
+    ${signUpButton()}
     </div>
-    `
-    
+    `;
 };
 
-const signUpPrompt = () => {
-  return `<button id="signUpButton" class=" btn btn-primary mb-3" >Click Here To Sign Up</button>`
-}
+// function -> create sign up button //
+const signUpButton = () => {
+  return `<button id="signUpButton" class=" btn btn-primary mb-3" >Click Here To Sign Up</button>`;
+};
 
-const signUp = () => {
-  return `<div class="container border">
+// function -> create sign up form
+const signUpForm = () => {
+  return `
+  <h1 class="text-center">GiffyGram</h1>
+  <div class="container border">
   <h3>Sign Up</h3>
   <form>
       <div class="form-group mb-3">
@@ -46,33 +51,23 @@ const signUp = () => {
           <input class="form-control" type="text" name="signup-name" id="signup-name" placeholder="Jake from State Farm">    
       </div>
       <div class="form-group mb-3">
-          <label for="signup-email">Email:</label>
-          <input class="form-control" type="email" name="signup-email" id="signup-email" placeholder="jake@statefarm.com">
+      <label for="signup-email">Email:</label>
+      <input class="form-control" type="email" name="signup-email" id="signup-email" placeholder="jake@statefarm.com">
       </div>
       <div class="form-group mb-3">
-          <label for="signup-password">Password:</label>
-          <input class="form-control" type="password" name="signup-password" id="signup-password" placeholder="password">
+      <label for="signup-password">Password:</label>
+      <input class="form-control" type="password" name="signup-password" id="signup-password" placeholder="password">
       </div>
       <div id="signup-incomplete-text"></div>
       <button class="btn btn-primary mb-3" id="signUp">Create Account</button>
-  </form>
-</div>`;
-}
-
-// function -> set 'loginStatus' and 'user' in local storage -> dispatch 'login' event //
-const loginUser = (userObj) => {
-  localStorage.setItem("loginStatus", "authenticated");
-  localStorage.setItem("user", userObj.email);
-  mainContainer.dispatchEvent(new CustomEvent("login"));
+      </form>
+      </div>`;
 };
-/* END */
-
-/* <===> <===> EVENT LISTENERS <===> <===> */
-
-mainContainer.addEventListener('click', clickEvent => {
+// event listener -> click 'Sign Up' button -> opens sign up form
+mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "signUpButton")
-  document.querySelector('#signUpHTML').innerHTML = `${signUp()}`
-})
+    mainContainer.innerHTML = `${signUpForm()}`;
+});
 
 // event listener -> click -> 'Create Account' -> check if user exists ->save user to API //
 document.addEventListener("click", (clickEvent) => {
@@ -112,11 +107,22 @@ document.addEventListener("click", (clickEvent) => {
 
       // ...send object to the database... //
       saveUser(sendUserToAPI);
-      // ...and notify user of successful account creation //
-      window.alert("User Account Created Successfully! Please Login.");
+      mainContainer.innerHTML = `
+      <h1 class="text-center">GiffyGram</h1>
+      <h3 class="text-center">
+      Sign Up Successfull!</h3>
+      <p class ="text-center"> If page does not reload in 5 seconds, refresh your browser.</p>`;
+      setTimeout(() => {
+        mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+      }, 5000);
     }
   }
 });
+
+
+/* END */
+
+/* <===> <===> EVENT LISTENERS <===> <===> */
 
 // event listener -> click -> 'Login' -> check user input against API data //
 document.addEventListener("click", (clickEvent) => {
@@ -138,9 +144,8 @@ document.addEventListener("click", (clickEvent) => {
 
     // if current user is in the database... //
     if (currentUser) {
-      setCurrentUser(currentUser);  // updates applicationState
-      setInboxOpen(false)
-      loginUser(currentUser);  // updates localStorage
+      setCurrentUser(currentUser); // updates applicationState
+      loginUser(currentUser); // updates localStorage
 
       // if current user is NOT in the database... //
     } else {

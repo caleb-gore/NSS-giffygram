@@ -1,10 +1,9 @@
 /* <===> <===> IMPORTS <===> <===> */
 import {
   setCurrentUser,
-  setNewMessageClicked,
-  setInboxOpen,
   getCurrentUser,
   getMessages,
+  setInboxToOpen,
 } from "../data/provider.js";
 
 /* <===> <===> FUNCTIONS <===> <===> */
@@ -16,7 +15,7 @@ export const NavBar = () => {
       currentUser.id === message.recipientId && message.read === false
   );
 
-  if (unreadMessages.length !== 0) {
+  if (unreadMessages.length > 0) {
     return `
     <div class=" bg-white border fixed-top d-flex flex-row justify-content-center align-items-center">
     <button id="homeBtn" class="btn">
@@ -68,29 +67,12 @@ const mainContainer = document.querySelector("#container");
 mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "logout") {
     setCurrentUser({});
+    setInboxToOpen(false)
     localStorage.removeItem("loginStatus");
     localStorage.removeItem("user");
     mainContainer.dispatchEvent(new CustomEvent("logout"));
   }
 });
 
-// event listener -> click -> 'New Message' -> set 'clicked' status to true //
-document.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id === "newMessage") {
-    setNewMessageClicked(true);
-  }
-});
 
-// event listener -> click -> post entry section -> set 'clicked' status to true //
-document.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id === "inbox") {
-    setInboxOpen(true);
-  }
-});
 
-// event listener -> click -> post entry section -> set 'clicked' status to true //
-document.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id === "homeBtn") {
-    setInboxOpen(false);
-  }
-});

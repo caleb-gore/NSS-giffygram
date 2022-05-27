@@ -83,6 +83,42 @@
       "email": "newphone@whodis.com",
       "password": "phone",
       "id": 14
+    },
+    {
+      "name": "New User",
+      "email": "new@user.com",
+      "password": "new",
+      "id": 15
+    },
+    {
+      "name": "New User",
+      "email": "new@user.com",
+      "password": "new",
+      "id": 16
+    },
+    {
+      "name": "Newer User",
+      "email": "newer@user.com",
+      "password": "new",
+      "id": 17
+    },
+    {
+      "name": "Newest User",
+      "email": "newest@user.com",
+      "password": "new",
+      "id": 18
+    },
+    {
+      "name": "Phylicia Chapman",
+      "email": "phylicia@chapman.com",
+      "password": "phee",
+      "id": 19
+    },
+    {
+      "name": "Yvette Chapman",
+      "email": "yvette@chapman.com",
+      "password": "yvette",
+      "id": 20
     }
   ],
   "posts": [
@@ -101,6 +137,38 @@
       "userId": 2,
       "timestamp": 1653491296576,
       "id": 2
+    },
+    {
+      "title": "Rita",
+      "imageURL": "https://media.giphy.com/media/4nmia4j8ltC6cJza1o/giphy.gif",
+      "description": "diva with a 'tude",
+      "userId": 19,
+      "timestamp": 1653621666379,
+      "id": 3
+    },
+    {
+      "title": "An Interesting Title",
+      "imageURL": "https://media.giphy.com/media/gkFp9JUR0HSuvHoDgO/giphy-downsized-large.gif",
+      "description": "An Interesting Story",
+      "userId": 1,
+      "timestamp": 1653623796671,
+      "id": 4
+    },
+    {
+      "title": "yessss",
+      "imageURL": "https://media.giphy.com/media/GXD04gzl9ca2TiFoGb/giphy.gif",
+      "description": "",
+      "userId": 1,
+      "timestamp": 1653624257522,
+      "id": 5
+    },
+    {
+      "title": "Oooooo",
+      "imageURL": "https://media.giphy.com/media/J1j6wzyprIjN0dFZoc/giphy.gif",
+      "description": "ooooo",
+      "userId": 3,
+      "timestamp": 1653624576727,
+      "id": 6
     }
   ],
   "deletedPosts": [
@@ -111,6 +179,22 @@
       "userId": 11,
       "timestamp": 1653495720644,
       "id": 3
+    },
+    {
+      "title": "Good",
+      "imageURL": "clickEvent.preventDefault()",
+      "description": "good",
+      "userId": 1,
+      "timestamp": 1653623949413,
+      "id": 5
+    },
+    {
+      "title": "good",
+      "imageURL": "clickEvent.preventDefault()",
+      "description": "good",
+      "userId": 1,
+      "timestamp": 1653624051515,
+      "id": 6
     }
   ],
   "messages": [
@@ -125,7 +209,7 @@
       "userId": 2,
       "recipientId": 1,
       "text": "You're a loser, Harry",
-      "read": false,
+      "read": true,
       "id": 2
     },
     {
@@ -141,6 +225,20 @@
       "text": "See you at home! Bring Dinner!",
       "read": true,
       "id": 4
+    },
+    {
+      "userId": 19,
+      "recipientId": 1,
+      "text": ".........Hi",
+      "read": true,
+      "id": 5
+    },
+    {
+      "userId": 3,
+      "recipientId": 1,
+      "text": "Good work",
+      "read": true,
+      "id": 6
     }
   ]
 }
