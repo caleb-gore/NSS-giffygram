@@ -36,7 +36,7 @@ Hello ${currentUser.name}, Welcome to GiffyGram
 <div>
 ${PostEntry()}
 </div>
-<div>
+<div id='postList'>
 ${PostList()}
 </div>
         

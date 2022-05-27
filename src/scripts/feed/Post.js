@@ -109,13 +109,3 @@ document.addEventListener('click', clickEvent => {
         deleteLike(unclickedLike.id)
     }
 })
-
-
-
-/* Like Buttons
-
-liked - <i class="fa-solid fa-heart"> </i>
-
-unliked - <i class="fa-regular fa-heart"></i>
-
-*/
