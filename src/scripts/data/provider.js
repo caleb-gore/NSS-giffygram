@@ -136,6 +136,10 @@ export const getMessages = () => {
 export const getInboxIsOpen = () => {
   return applicationState.inboxIsOpen;
 };
+
+export const getOpenMessages = () => {
+  return (applicationState.openMessages ? applicationState.openMessages.map(message => ({...message})) : [])
+}
 /* END */
 
 /* <===> <===> FUNCTIONS (SETTER) <===> <===> */
@@ -149,6 +153,17 @@ export const setInboxToOpen = (boolean) => {
   applicationState.inboxIsOpen = boolean
 }
 
+export const setMessageToOpen = (messageObj) => {
+  if (applicationState.openMessages === undefined) {
+    applicationState.openMessages = []
+  }
+  applicationState.openMessages.push(messageObj)
+}
+
+export const setMessageToClosed = (messageObj) => {
+  const openMessages = applicationState.openMessages.filter(message => message !== messageObj)
+  applicationState.openMessages = openMessages
+}
 
 
 

@@ -7,8 +7,7 @@ import {
 } from "../data/provider.js";
 
 /* <===> <===> FUNCTIONS <===> <===> */
-export const NavBar = () => {
-  const currentUser = getCurrentUser();
+export const NavBar = (currentUser) => {
   const messages = getMessages();
   const unreadMessages = messages.filter(
     (message) =>

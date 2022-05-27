@@ -15,9 +15,9 @@ export const GiffyGram = () => {
   const currentUser = users.find((user) => user.email === currentUserEmail);
   setCurrentUser(currentUser);
   
-  let HTML = NavBar();
+  let HTML = NavBar(currentUser);
   if (getInboxIsOpen()) {
-    HTML += `<div id="currentHTML">${MessageList(currentUsers)}</div>`;
+    HTML += `<div id="currentHTML">${MessageList(currentUser)}</div>`;
   } else {
     HTML += `<div id="currentHTML">${feed(currentUser)}</div>`;
   }
